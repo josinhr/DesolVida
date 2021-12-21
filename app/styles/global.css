@@ -1,0 +1,12 @@
+:root {
+  --global-background: linear-gradient(
+    180deg,
+    rgba(0, 255, 209, 0.7) 14.06%,
+    rgba(102, 207, 144, 0.76) 75%
+  );
+}
+
+html {
+  background: var(--global-background);
+  min-height: 100%;
+}
