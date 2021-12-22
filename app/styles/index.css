@@ -1,1 +1,14 @@
+.mainTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
+.mainTitle h1 {
+  margin: 0;
+}
+
+.mainTitle img {
+  width: 100px;
+}

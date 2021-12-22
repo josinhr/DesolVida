@@ -4,9 +4,21 @@
     rgba(0, 255, 209, 0.7) 14.06%,
     rgba(102, 207, 144, 0.76) 75%
   );
+  --global-font-family: "Teko", sans-serif;
+  --h1-font-fmily: "Teko", sans-serif;
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Teko:wght@500;600&display=swap");
 
 html {
   background: var(--global-background);
   min-height: 100%;
+  font-family: var(--global-font-family);
+}
+
+h1 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 100px;
+  line-height: 100px;
 }
