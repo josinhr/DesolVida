@@ -1,4 +1,4 @@
-import { LinksFunction } from "remix";
+import { Link, LinksFunction } from "remix";
 import stylesUrl from "../styles/index.css";
 
 export const links: LinksFunction = () => {
@@ -9,6 +9,9 @@ export default function Index() {
   return (
     <div>
       <header>
+        <Link className="headerButton" to="/login">
+          Login
+        </Link>
         <div className="mainTitle">
           <h1>DesolVida</h1>
           <img
@@ -16,6 +19,9 @@ export default function Index() {
             alt="brain image"
           />
         </div>
+        <Link className="headerButton" to="/signin">
+          Sign In
+        </Link>
       </header>
       <div></div>
     </div>
