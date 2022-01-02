@@ -1,5 +1,6 @@
 import { Link, LinksFunction } from "remix";
 import stylesUrl from "../styles/index.css";
+import ImgageCarrousel from "../components/carrousel.component";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: stylesUrl }];
@@ -23,7 +24,9 @@ export default function Index() {
           Sign In
         </Link>
       </header>
-      <div></div>
+      <div>
+        <ImgageCarrousel />
+      </div>
     </div>
   );
 }
