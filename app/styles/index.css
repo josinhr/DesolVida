@@ -28,3 +28,17 @@ header {
   margin: 40px;
   color: black;
 }
+
+.photoCarrousel {
+  display: flex;
+  flex-direction: row;
+  margin: 40px;
+  overflow-y: hidden;
+}
+.photoCarrousel img {
+  width: 27%;
+}
+
+#photoCarrousel::-webkit-scrollbar {
+  width: 0px; /* For Chrome, Safari, and Opera */
+}
