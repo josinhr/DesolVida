@@ -1,12 +1,19 @@
-import { Link, LinksFunction } from "remix";
+import { Link, LinksFunction, useLoaderData, LoaderFunction } from "remix";
 import stylesUrl from "../styles/index.css";
-import ImgageCarrousel from "../components/carrousel.component";
+import { indexImages } from "~/assets/indexImages";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: stylesUrl }];
 };
 
+export let loader: LoaderFunction = async () => {
+  return [1, 2, 3, 4];
+};
+
 export default function Index() {
+  const data = useLoaderData<number[]>();
+  console.log("This is data" + data);
+
   return (
     <div>
       <header>
@@ -25,7 +32,9 @@ export default function Index() {
         </Link>
       </header>
       <div>
-        <ImgageCarrousel />
+        {data.map((n) => (
+          <img id={n.toString()} src={indexImages[n - 1]} alt="Old women" />
+        ))}
       </div>
     </div>
   );
