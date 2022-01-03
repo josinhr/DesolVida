@@ -16,6 +16,11 @@ export function useHorizontalScroll() {
           behavior: "smooth",
         });
       };
+      document
+        .getElementById("rightButton")
+        ?.addEventListener("click", function () {
+          // document.getElementById("dkemo").innerHTML = "Hello World";
+        });
       el.addEventListener("wheel", onWheel);
       return () => el.removeEventListener("wheel", onWheel);
     }
@@ -52,18 +57,20 @@ export default function Index() {
           Sign In
         </Link>
       </header>
-      <div>
+      <div className="carrouselContainer">
         <div ref={scrollRef} id="photoCarrousel" className="photoCarrousel">
           {data.map((n) => (
             <img id={n.toString()} src={indexImages[n - 1]} alt="Old women" />
           ))}
         </div>
-        <button type="button" className="button">
-          {"<"}
-        </button>
-        <button type="button" className="button">
-          {">"}
-        </button>
+        <div className="carrouselButtons">
+          <button type="button" className="button">
+            {"<"}
+          </button>
+          <button id="rightButton" type="button" className="button">
+            {">"}
+          </button>
+        </div>
       </div>
     </div>
   );
