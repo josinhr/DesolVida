@@ -19,7 +19,18 @@ export function useHorizontalScroll() {
       document
         .getElementById("rightButton")
         ?.addEventListener("click", function () {
-          // document.getElementById("dkemo").innerHTML = "Hello World";
+          el.scrollTo({
+            left: el.scrollLeft + 20,
+            behavior: "smooth",
+          });
+        });
+      document
+        .getElementById("leftButton")
+        ?.addEventListener("click", function () {
+          el.scrollTo({
+            left: el.scrollLeft - 20,
+            behavior: "smooth",
+          });
         });
       el.addEventListener("wheel", onWheel);
       return () => el.removeEventListener("wheel", onWheel);
@@ -32,12 +43,22 @@ export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: stylesUrl }];
 };
 
+export type OldWomenArray = {
+  key: number;
+  num: number;
+};
+
 export let loader: LoaderFunction = async () => {
-  return [1, 2, 3, 4];
+  return [
+    { key: 1, num: 1 },
+    { key: 2, num: 2 },
+    { key: 3, num: 3 },
+    { key: 4, num: 4 },
+  ];
 };
 
 export default function Index() {
-  const data = useLoaderData<number[]>();
+  const data = useLoaderData<OldWomenArray[]>();
   const scrollRef = useHorizontalScroll();
 
   return (
@@ -60,11 +81,16 @@ export default function Index() {
       <div className="carrouselContainer">
         <div ref={scrollRef} id="photoCarrousel" className="photoCarrousel">
           {data.map((n) => (
-            <img id={n.toString()} src={indexImages[n - 1]} alt="Old women" />
+            <img
+              key={n.key}
+              id={n.num.toString()}
+              src={indexImages[n.num - 1]}
+              alt="Old women"
+            />
           ))}
         </div>
         <div className="carrouselButtons">
-          <button type="button" className="button">
+          <button id="leftButton" type="button" className="button">
             {"<"}
           </button>
           <button id="rightButton" type="button" className="button">
