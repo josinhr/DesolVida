@@ -78,7 +78,7 @@ export default function Index() {
       <div className="carrouselContainer">
         <div ref={scrollRef} id="photoCarrousel" className="photoCarrousel">
           {data.map((n) => (
-            <Link to={n.id}>
+            <Link to={"oldPerson" + n.id}>
               <img
                 key={n.id}
                 id={n.name.toString()}
