@@ -1,7 +1,9 @@
 import { Link, LinksFunction, useLoaderData, LoaderFunction } from "remix";
 import stylesUrl from "../styles/index.css";
-import { indexImages } from "~/assets/indexImages";
+import { getIndexImage } from "~/assets/indexImages";
 import React, { useRef, useEffect } from "react";
+import { db } from "~/utils/db.server";
+import { OldPerson } from "@prisma/client";
 
 export function useHorizontalScroll() {
   const elRef = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -49,16 +51,11 @@ export type OldWomenArray = {
 };
 
 export let loader: LoaderFunction = async () => {
-  return [
-    { key: 1, num: 1 },
-    { key: 2, num: 2 },
-    { key: 3, num: 3 },
-    { key: 4, num: 4 },
-  ];
+  return db.oldPerson.findMany();
 };
 
 export default function Index() {
-  const data = useLoaderData<OldWomenArray[]>();
+  const data = useLoaderData<OldPerson[]>();
   const scrollRef = useHorizontalScroll();
 
   return (
@@ -81,12 +78,14 @@ export default function Index() {
       <div className="carrouselContainer">
         <div ref={scrollRef} id="photoCarrousel" className="photoCarrousel">
           {data.map((n) => (
-            <img
-              key={n.key}
-              id={n.num.toString()}
-              src={indexImages[n.num - 1]}
-              alt="Old women"
-            />
+            <Link to={n.id}>
+              <img
+                key={n.id}
+                id={n.name.toString()}
+                src={getIndexImage(n.photo - 1)}
+                alt="Old women"
+              />
+            </Link>
           ))}
         </div>
         <div className="carrouselButtons">
